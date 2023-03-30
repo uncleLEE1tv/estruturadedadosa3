@@ -1,0 +1,70 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Main {
+
+    public static void main(String[] args) {
+        LinkedList<Integer> lista = new LinkedList<>();
+        Stack<Integer> pilha = new Stack<>();
+        Queue<Integer> fila = new LinkedList<>();
+
+        // Passo 1
+        lista.add(1);
+        lista.add(2);
+        lista.add(3);
+        lista.add(4);
+        lista.add(5);
+
+        // Passo 2
+        while (!lista.isEmpty()) {
+            int numero = lista.removeFirst();
+            pilha.push(numero);
+        }
+
+        // Passo 3
+        while (!pilha.isEmpty()) {
+            int numero = pilha.pop();
+            fila.offer(numero);
+        }
+
+        // Passo 4
+        lista.add(6);
+        lista.add(7);
+        lista.add(8);
+        lista.add(9);
+        lista.add(10);
+
+        // Passo 5
+        while (!lista.isEmpty()) {
+            int numero = lista.removeFirst();
+            pilha.push(numero);
+        }
+
+        while (!pilha.isEmpty()) {
+            int numero = pilha.pop();
+            fila.offer(numero);
+        }
+
+        // Passo 6
+        System.out.println("Números na fila: " + fila);
+
+    }
+
+}
+
+
+A saída do programa será:
+
+Números na fila: [5, 4, 3, 2, 1, 10, 9, 8, 7, 6]
+
+
+Os números estão na ordem inversa em relação à ordem originalmente inserida na lista. Isso ocorre porque a implementação da pilha utiliza a 
+política LIFO (Last In First Out), ou seja, o último elemento a ser inserido é o primeiro a ser removido. Quando inserimos os números na pilha 
+no Passo 2, o último número a ser inserido na pilha foi o número 1 (que era o primeiro elemento da lista). Portanto, quando removemos os números 
+da pilha no Passo 3, o primeiro número a ser removido é o número 5 (que era o último elemento da lista). Assim, a ordem original é invertida.
+
+No Passo 5, a lista é preenchida com os números 6 a 10 e novamente inseridos na pilha e na fila. Como a pilha utiliza a política LIFO, os números 
+10 a 6 serão removidos na ordem inversa em relação à sua inserção na lista. Portanto, quando os números são inseridos na fila, eles estarão na ordem correta novamente.
+
+No final, todos os números são exibidos na ordem em que foram inseridos na fila: 5, 4, 3, 2, 1, 10, 9, 8, 7, 6.
